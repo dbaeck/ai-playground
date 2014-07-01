@@ -22,3 +22,4 @@ The Framework should implement the following Algoritms:
 * Recursive Best First Search
 * Real Time A*
 * Simulated Annealing
+* Local Search
