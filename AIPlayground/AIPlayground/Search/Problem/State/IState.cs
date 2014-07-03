@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AIPlayground
+namespace AIPlayground.Search.Problem.State
 {
 	public interface IState:IComparable
 	{

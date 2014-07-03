@@ -41,6 +41,11 @@
     <Compile Include="Search\Problem\State\InformedState.cs" />
     <Compile Include="Search\Problem\State\UninformedState.cs" />
     <Compile Include="Search\Algorithm\SearchNode.cs" />
+    <Compile Include="Search\Algorithm\SearchAlgorithm.cs" />
+    <Compile Include="Search\Algorithm\GraphSearch.cs" />
+    <Compile Include="Search\Algorithm\TreeSearch.cs" />
+    <Compile Include="Search\Problem\SearchProblem.cs" />
+    <Compile Include="Search\Problem\Heuristic\Heuristic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AIPlayground
+namespace AIPlayground.Search.Problem.State
 {
 	public abstract class InformedState:IState
 	{
