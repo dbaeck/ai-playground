@@ -7,6 +7,6 @@ namespace AIPlayground
 {
     public class Class1
     {
-        //haaa gay!
+        
     }
 }
