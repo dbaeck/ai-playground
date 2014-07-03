@@ -2,7 +2,7 @@
 
 namespace AIPlayground.Search.Algorithm
 {
-
+	//TODO: Make implement iCompareable
 	public class SearchNode
 	{
 		public IState CurrentState {get;set;}
