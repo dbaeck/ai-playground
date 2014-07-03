@@ -7,7 +7,7 @@ Library and demo projects to implement and test various AI related algorithms. R
 * Learning Algorithms
 * tbc.
 
-# Search Algorithms
+## Search Algorithms
 
 The Framework should implement the following Algoritms:
 
@@ -18,8 +18,14 @@ The Framework should implement the following Algoritms:
 * Beam Search
 * Best First Search
 * A*
-* Hill Climbing
+* Local Search
+	* Hill Climbing
 * Recursive Best First Search
 * Real Time A*
 * Simulated Annealing
-* Local Search
+
+## Used Tools
+
+* Microsoft Visual Studio
+* Xamarin Studio/Mono
+* Pencil (Mockups)
