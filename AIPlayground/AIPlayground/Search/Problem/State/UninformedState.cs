@@ -2,11 +2,9 @@
 
 namespace AIPlayground
 {
-	public class UninformedState:IState
+	public abstract class UninformedState:IState
 	{
-		public UninformedState ()
-		{
-		}
+		public abstract int CompareTo(object obj);
 	}
 }
 

@@ -40,6 +40,7 @@
     <Compile Include="Search\Problem\State\IState.cs" />
     <Compile Include="Search\Problem\State\InformedState.cs" />
     <Compile Include="Search\Problem\State\UninformedState.cs" />
+    <Compile Include="Search\Algorithm\SearchNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
