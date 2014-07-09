@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{CE1BBEDF-6EF9-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{DB337F84-AD25-40A9-93A2-C6D9A2BA50EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{8FE67FF2-EB8F-44D5-8901-FE73AFA3A022}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{DB337F84-AD25-40A9-93A2-C6D9A2BA50EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB337F84-AD25-40A9-93A2-C6D9A2BA50EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB337F84-AD25-40A9-93A2-C6D9A2BA50EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE67FF2-EB8F-44D5-8901-FE73AFA3A022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE67FF2-EB8F-44D5-8901-FE73AFA3A022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE67FF2-EB8F-44D5-8901-FE73AFA3A022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE67FF2-EB8F-44D5-8901-FE73AFA3A022}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
