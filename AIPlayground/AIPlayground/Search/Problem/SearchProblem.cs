@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using AIPlayground.Search.Problem.State;
+using AIPlayground.Search.Problem.Heuristic;
 
 namespace AIPlayground.Search.Problem
 {
