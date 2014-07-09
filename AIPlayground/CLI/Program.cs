@@ -19,7 +19,7 @@ namespace CLI
             using (new OperationMonitor("sender", "sleep",time)) 
             {
                
-             
+                //the using block measures the time for exec this and calls the time-callback
 
             }
             Console.In.Read();
