@@ -52,6 +52,10 @@
       <Project>{6f9ccb31-375f-4fee-bfa5-6e37bbea7641}</Project>
       <Name>AIPlayground</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{8FE67FF2-EB8F-44D5-8901-FE73AFA3A022}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
