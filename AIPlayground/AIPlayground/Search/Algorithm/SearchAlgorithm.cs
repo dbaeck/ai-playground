@@ -1,13 +1,42 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using AIPlayground.Search.Problem;
+using AIPlayground.Search.Problem.State;
 
 namespace AIPlayground.Search.Algorithm
 {
 	public abstract class SearchAlgorithm
 	{
-		public ObservableCollection<SearchNode> Fringe {get;set;}
+        public SearchProblem Problem { get; private set; }
+	    protected SearchAlgorithm(SearchProblem problem)
+	    {
+	        Problem = problem;
+            Fringe = new ObservableCollection<SearchNode>();
+	        var initNode = new SearchNode(Problem.InitialState, null);
+            Fringe.Add(initNode);
+	    }
+		public ObservableCollection<SearchNode> Fringe {get;private set;}
 
 		public abstract SearchNode Search();
+
+        protected SearchNode CreateSearchNode(IState current, SearchNode parent)
+	    {
+	        return new SearchNode(current,parent);
+	    }
+
+        protected IEnumerable<SearchNode> CreateSearchNode(IEnumerable<IState> current, SearchNode parent)
+	    {
+            return current.Select(state => CreateSearchNode(state,parent));
+	    }
+
+	    protected IEnumerable<SearchNode> CreateSearchNode(SearchNode parent, params IState[] current)
+	    {
+	        return CreateSearchNode(current, parent);
+	    }
+
 	}
 }
 

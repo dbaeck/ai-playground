@@ -3,9 +3,9 @@ using AIPlayground.Search.Problem.State;
 
 namespace AIPlayground.Search.Problem.Heuristic
 {
-	public interface Heuristic<T> where T:IState
+	public interface IHeuristic<T> where T:IState
 	{
-		double calculate(T current, T goal);
+		double Calculate(T current, T goal);
 	}
 }
 

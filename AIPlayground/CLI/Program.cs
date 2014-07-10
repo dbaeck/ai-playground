@@ -5,7 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AIPlayground.Examples;
 using AIPlayground.Search.Algorithm;
+using AIPlayground.Search.Algorithm.GraphSearch;
+using AIPlayground.Search.Problem;
+using AIPlayground.Search.Problem.State;
 using Common;
 
 namespace CLI
@@ -14,15 +18,25 @@ namespace CLI
     {
         static void Main(string[] args)
         {
+             
+            
+
             //TODO: Insert Problem here!
 
-            using (new OperationMonitor("sender", "sleep",time)) 
+            SearchNode res = null;
+            using (new OperationMonitor("sender", "sleep",time))
             {
-               
-                //the using block measures the time for exec this and calls the time-callback
+              
+
+                SearchProblem problem = new MagicSquare(3);
+                SearchAlgorithm sa = new BreadthFirstSearch(problem);
+                res = sa.Search();
 
             }
+            Console.WriteLine(res);
             Console.In.Read();
+
+            
 
         }
 

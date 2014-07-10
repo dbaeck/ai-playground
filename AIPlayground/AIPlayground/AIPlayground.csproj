@@ -37,16 +37,20 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Examples\MagicSquare.cs" />
+    <Compile Include="Examples\MagicSquareState.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\Algorithm\GraphSearch\BreadthFirstSearch.cs" />
     <Compile Include="Search\Problem\State\IState.cs" />
     <Compile Include="Search\Problem\State\InformedState.cs" />
     <Compile Include="Search\Problem\State\UninformedState.cs" />
     <Compile Include="Search\Algorithm\SearchNode.cs" />
     <Compile Include="Search\Algorithm\SearchAlgorithm.cs" />
-    <Compile Include="Search\Algorithm\GraphSearch.cs" />
+    <Compile Include="Search\Algorithm\GraphSearch\GraphSearch.cs" />
     <Compile Include="Search\Algorithm\TreeSearch.cs" />
     <Compile Include="Search\Problem\SearchProblem.cs" />
-    <Compile Include="Search\Problem\Heuristic\Heuristic.cs" />
+    <Compile Include="Search\Problem\Heuristic\IHeuristic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -61,5 +65,8 @@
       <Project>{8fe67ff2-eb8f-44d5-8901-fe73afa3a022}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Search\Algorithm\TreeSearch\" />
   </ItemGroup>
 </Project>
