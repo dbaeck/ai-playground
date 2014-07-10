@@ -15,7 +15,8 @@ namespace AIPlayground
         {
             foreach (var searchNode in nodes)
             {
-                fringe.Add(searchNode);   
+                //fringe.Add(searchNode);
+                fringe.Insert((fringe.Count==0)?0:fringe.Count-1,searchNode);
             }
         }
 
@@ -33,6 +34,20 @@ namespace AIPlayground
                 return temp;
             }
             return default(T);
+        }
+
+        public static SearchNode Pop(this ObservableCollection<SearchNode> fringe)
+        {
+            return fringe.GetAndRemoveFirst();
+        }
+
+        public static void Push(this ObservableCollection<SearchNode> fringe, IEnumerable<SearchNode> nodes)
+        {
+            var a = nodes.Reverse();
+            foreach (var node in a)
+            {
+                fringe.Insert(0,node);
+            }
         }
     }
 }

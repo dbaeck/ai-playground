@@ -28,9 +28,10 @@ namespace CLI
             {
               
 
-                SearchProblem problem = new MagicSquare(3);
-                SearchAlgorithm sa = new BreadthFirstSearch(problem);
+                MagicSquare problem = new MagicSquare(3);
+                SearchAlgorithm sa = new DepthFirstSearch(problem);
                 res = sa.Search();
+                Console.WriteLine("c: " + problem.c);
 
             }
             Console.WriteLine(res);

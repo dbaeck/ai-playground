@@ -1,39 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AIPlayground.Search.Problem;
-using AIPlayground.Search.Problem.State;
 
 namespace AIPlayground.Search.Algorithm.GraphSearch
 {
-    public class BreadthFirstSearch : GraphSearch
+    public class DepthFirstSearch:GraphSearch
     {
-
-        public BreadthFirstSearch(SearchProblem problem) : base(problem)
+        public DepthFirstSearch(SearchProblem problem) : base(problem)
         {
-
         }
 
         public override SearchNode Search()
         {
             SearchNode current = null;
             SearchNode goal = null;
-            while(Fringe.Any())
+            while (Fringe.Any())
             {
-                
-                current = Fringe.Dequeue();
+
+                current = Fringe.Pop();
                 if (Problem.GoalCheck(current.CurrentState)) return current;
-                if (true || !ClosedList.Contains(current))
+                if (!ClosedList.Contains(current))
                 {
-                    Fringe.Enqueue(CreateSearchNode(Problem.Expand(current.CurrentState), current));
+                    Fringe.Push(CreateSearchNode(Problem.Expand(current.CurrentState), current));
                     //TODO: Implement as HashTable
-                    //ClosedList.Add(current);
+                    ClosedList.Add(current);
                 }
             }
             return null;
         }
+
+        has
     }
 }

@@ -11,6 +11,7 @@ namespace AIPlayground.Examples
     public class MagicSquare:SearchProblem
     {
 
+        public int c = 0;
         private int n;
         private int solution;
 
@@ -23,9 +24,11 @@ namespace AIPlayground.Examples
 
         public override bool GoalCheck(IState current)
         {
+            c++;
             var magicCurrent = (MagicSquareState) current;
 
             if (magicCurrent.GetCurrentNumber() < n * n) return false;
+            
             return checkRows(magicCurrent.CurrentSquare);
         }
 
@@ -44,7 +47,7 @@ namespace AIPlayground.Examples
                     sumRows += square[j, i];
 
                     if (i == j) sumDiag1 += square[i, j];
-                    if (i + j ==n) sumDiag2 += square[i, j];
+                    if (i + j ==n-1) sumDiag2 += square[i, j];
                 }
                 if (sumCols != solution || sumRows!= solution) return false;
             }
@@ -71,6 +74,7 @@ namespace AIPlayground.Examples
                         Array.Copy(currSquare, newSquare, n * n);
                         newSquare[i, j] = nextNumber;
                         var newState = new MagicSquareState(newSquare);
+                        
                         yield return newState;
                     }
                 }
