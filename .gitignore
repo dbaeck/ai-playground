@@ -175,3 +175,8 @@ FakesAssemblies/
 
 # User Preferences
 *.userprefs
+
+#profiling
+*.psess
+*.etl
+*.vspx
