@@ -20,17 +20,15 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
         public override SearchNode Search()
         {
             SearchNode current = null;
-            SearchNode goal = null;
             while(Fringe.Any())
             {
                 
                 current = Fringe.Dequeue();
                 if (Problem.GoalCheck(current.CurrentState)) return current;
-                if (true || !ClosedList.Contains(current))
+                if (!ClosedList.Contains(current))
                 {
                     Fringe.Enqueue(CreateSearchNode(Problem.Expand(current.CurrentState), current));
-                    //TODO: Implement as HashTable
-                    //ClosedList.Add(current);
+                    ClosedList.Add(current);
                 }
             }
             return null;

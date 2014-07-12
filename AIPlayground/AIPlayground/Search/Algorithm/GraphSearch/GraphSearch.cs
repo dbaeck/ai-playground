@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using AIPlayground.Search.Problem;
 using AIPlayground.Search.Problem.State;
+using System.Collections.Generic;
 
 namespace AIPlayground.Search.Algorithm.GraphSearch
 {
@@ -9,10 +10,10 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 	{
 	    protected GraphSearch(SearchProblem problem) : base(problem)
 	    {
-            ClosedList = new ObservableCollection<SearchNode>();
+			ClosedList = new HashSet<SearchNode>();
 	    }
 
-	    public ObservableCollection<SearchNode> ClosedList{ get; set;}
+		public HashSet<SearchNode> ClosedList{ get; set;}
 	}
 }
 

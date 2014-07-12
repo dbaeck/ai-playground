@@ -9,12 +9,15 @@ namespace AIPlayground.Examples
 {
     
     public class MagicSquareState:UninformedState
-    {
+    {	
+		public string FieldRepresentation { get; private set;}
         public int[,] CurrentSquare { get; private set;}
+
 
         public MagicSquareState(int[,] state)
         {
             CurrentSquare = state;
+			FieldRepresentation = getFieldRepresentation();
         }
 
         public override int CompareTo(object obj)
@@ -38,5 +41,53 @@ namespace AIPlayground.Examples
             }
             return res;
         }
+
+		public override bool Equals(object obj)
+		{
+			return stateEquals(obj);
+		}
+
+		public override int GetHashCode()
+		{
+			return getStateHashCode ();
+		}
+
+		private String getFieldRepresentation(){
+			StringBuilder rep = new StringBuilder();
+			foreach (var f in CurrentSquare) {
+				rep.Append(f);
+			}
+			return rep.ToString();
+		}
+
+		protected override int getStateHashCode(){
+			//proposed on stack overflow
+			unchecked // Overflow is fine, just wrap
+			{
+				int hash = 17;
+				// Suitable nullity checks etc, of course :)
+				hash = hash * 23 + FieldRepresentation.GetHashCode();
+				return hash;
+			}
+		}
+
+		protected override bool stateEquals(System.Object obj)
+		{
+			if (obj == null)
+			{
+				return false;
+			}
+			// If parameter cannot be cast to Point return false.
+			MagicSquareState s = obj as MagicSquareState;
+			if ((System.Object)s == null)
+			{
+				return false;
+			}
+
+			if(FieldRepresentation.Equals(s.FieldRepresentation))
+				return true;
+
+			return false;
+		}
     }
 }

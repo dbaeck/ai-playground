@@ -18,8 +18,6 @@ namespace CLI
     {
         static void Main(string[] args)
         {
-             
-            
 
             //TODO: Insert Problem here!
 

@@ -16,7 +16,6 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
         public override SearchNode Search()
         {
             SearchNode current = null;
-            SearchNode goal = null;
             while (Fringe.Any())
             {
 
@@ -25,8 +24,7 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
                 if (!ClosedList.Contains(current))
                 {
                     Fringe.Push(CreateSearchNode(Problem.Expand(current.CurrentState), current));
-                    //TODO: Implement as HashTable
-                    ClosedList.Add(current);
+					ClosedList.Add(current);
                 }
             }
             return null;
