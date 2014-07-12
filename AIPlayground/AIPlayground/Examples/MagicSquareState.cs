@@ -20,11 +20,6 @@ namespace AIPlayground.Examples
 			FieldRepresentation = getFieldRepresentation();
         }
 
-        public override int CompareTo(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public int GetCurrentNumber()
         {
            return CurrentSquare.Cast<int>().Max();

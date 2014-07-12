@@ -34,7 +34,7 @@ Global
 		{DB337F84-AD25-40A9-93A2-C6D9A2BA50EF} = {CE1BBEDF-6EF9-47AB-959A-6382DA5CC08C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = AIPlayground\AIPlayground.csproj
+		StartupItem = CLI\CLI.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

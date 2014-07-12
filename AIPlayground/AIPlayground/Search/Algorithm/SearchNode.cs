@@ -35,7 +35,7 @@ namespace AIPlayground.Search.Algorithm
 			{
 				return false;
 			}
-			// If parameter cannot be cast to Point return false.
+			// If parameter cannot be cast return false.
 			SearchNode node = obj as SearchNode;
 			if ((System.Object)node == null)
 			{

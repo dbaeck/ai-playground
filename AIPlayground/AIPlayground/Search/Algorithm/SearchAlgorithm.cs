@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using AIPlayground.Search.Problem;
 using AIPlayground.Search.Problem.State;
+using AIPlayground.Search.Algorithm;
 
 namespace AIPlayground.Search.Algorithm
 {
@@ -14,11 +15,11 @@ namespace AIPlayground.Search.Algorithm
 	    protected SearchAlgorithm(SearchProblem problem)
 	    {
 	        Problem = problem;
-            Fringe = new ObservableCollection<SearchNode>();
+            Fringe = new Fringe();
 	        var initNode = new SearchNode(Problem.InitialState, null);
             Fringe.Add(initNode);
 	    }
-		public ObservableCollection<SearchNode> Fringe {get;private set;}
+		public Fringe Fringe {get;private set;}
 
 		public abstract SearchNode Search();
 

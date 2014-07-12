@@ -4,7 +4,6 @@ namespace AIPlayground.Search.Problem.State
 {
 	public abstract class UninformedState:IState
 	{
-		public abstract int CompareTo(object obj);
 
 		public override bool Equals(object obj)
 		{

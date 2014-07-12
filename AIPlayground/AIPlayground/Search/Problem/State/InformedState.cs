@@ -4,7 +4,7 @@ namespace AIPlayground.Search.Problem.State
 {
 	public abstract class InformedState:IState
 	{
-		public double Cost {get;set;}
+
 		public double HValue {get;set;}
 		public double FValue {
 			get
@@ -12,8 +12,7 @@ namespace AIPlayground.Search.Problem.State
 				return Cost + HValue;
 			}
 		}
-
-		public abstract int CompareTo(object obj);
+			
 
 		public override bool Equals(object obj)
 		{
