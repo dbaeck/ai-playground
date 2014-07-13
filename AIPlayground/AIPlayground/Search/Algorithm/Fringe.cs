@@ -28,7 +28,7 @@ namespace AIPlayground
 
 		public SearchNode GetAndRemoveFirst()
 		{
-			if (this.Count != 0)
+			if (this.Any())
 			{
 				var temp = this.First();
 				this.RemoveAt(0);
