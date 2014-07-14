@@ -9,6 +9,7 @@ using AIPlayground.Search.Problem.State;
 
 namespace AIPlayground.Search.Algorithm.GraphSearch
 {
+
     public class BreadthFirstSearch : GraphSearch
     {
 

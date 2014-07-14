@@ -3,6 +3,7 @@ using AIPlayground.Search.Algorithm;
 using System.Linq;
 using AIPlayground.Search.Problem;
 using AIPlayground.Search.Algorithm.GraphSearch;
+using System.Collections.Generic;
 
 
 namespace AIPlayground
@@ -24,15 +25,18 @@ namespace AIPlayground
 				if (Problem.GoalCheck(current.CurrentState)) return current;
 				if (!ClosedList.Contains(current))
 				{
-					Fringe.SortedInsert(CreateSearchNode(Problem.Expand(current.CurrentState), current), costCompare);
+					Fringe.SortedInsert(CreateSearchNode(Problem.Expand(current.CurrentState), current), new CostComparer());
 					//Fringe.Enqueue(CreateSearchNode(Problem.Expand(current.CurrentState), current));
 					ClosedList.Add(current);
 				}
 			}
 			return null;
 		}
+	}
 
-		public int costCompare(SearchNode s1, SearchNode s2)
+	public class CostComparer : Comparer<SearchNode>  {
+
+		public override int Compare(SearchNode s1, SearchNode s2)
 		{
 			return s1.CurrentState.Cost.CompareTo (s2.CurrentState.Cost);
 		}

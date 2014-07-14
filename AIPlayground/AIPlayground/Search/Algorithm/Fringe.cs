@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using AIPlayground.Search.Algorithm;
+using System.Collections;
 
 namespace AIPlayground
 {
+	public delegate int SortDelegate(SearchNode n1, SearchNode n2);
+
 	public class Fringe : List<SearchNode>
 	{
 	
-		public delegate int SortDelegate(SearchNode n1, SearchNode n2);
-
 		public Fringe ()
 		{
 
@@ -19,7 +20,7 @@ namespace AIPlayground
 			return 0;
 		}
 
-		public void SortedInsert(IEnumerable<SearchNode> nodes, SortDelegate del){
+		public void SortedInsert(IEnumerable<SearchNode> nodes, IComparer<SearchNode> del){
 			foreach (var searchNode in nodes)
 				this.Add (searchNode);
 

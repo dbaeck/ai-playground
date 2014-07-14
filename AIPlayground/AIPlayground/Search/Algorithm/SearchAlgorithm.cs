@@ -9,8 +9,12 @@ using AIPlayground.Search.Algorithm;
 
 namespace AIPlayground.Search.Algorithm
 {
+
+
 	public abstract class SearchAlgorithm
 	{
+		public SearchEvent onCreateNode;
+
         public SearchProblem Problem { get; private set; }
 	    protected SearchAlgorithm(SearchProblem problem)
 	    {
@@ -25,7 +29,8 @@ namespace AIPlayground.Search.Algorithm
 
         protected SearchNode CreateSearchNode(IState current, SearchNode parent)
 	    {
-	        return new SearchNode(current,parent);
+			onCreateNode (new Event (), new EventArgs ());
+			return new SearchNode(current,parent);
 	    }
 
         protected IEnumerable<SearchNode> CreateSearchNode(IEnumerable<IState> current, SearchNode parent)
