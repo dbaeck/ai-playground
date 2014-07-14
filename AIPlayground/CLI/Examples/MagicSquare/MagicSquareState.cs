@@ -14,6 +14,7 @@ namespace AIPlayground.Examples
         public int[,] CurrentSquare { get; private set;}
 
 
+
         public MagicSquareState(int[,] state)
         {
             CurrentSquare = state;
@@ -78,6 +79,11 @@ namespace AIPlayground.Examples
 				return true;
 
 			return false;
+		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode ();
 		}
     }
 }

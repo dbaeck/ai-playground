@@ -33,6 +33,11 @@ namespace AIPlayground
 
 			return (other.X == this.X && other.Y == this.Y);
 		}
+
+		public override int GetHashCode()
+		{
+			return this.ToString ().GetHashCode ();
+		}
 	}
 
 	public class Size
@@ -64,7 +69,7 @@ namespace AIPlayground
 
 		protected override int getStateHashCode()
 		{
-			return this.Coordinates.ToString ().GetHashCode ();
+			return this.Coordinates.GetHashCode ();
 		}
 
 		protected override bool stateEquals(Object state)
