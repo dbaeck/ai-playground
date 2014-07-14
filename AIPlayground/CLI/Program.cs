@@ -11,6 +11,7 @@ using AIPlayground.Search.Algorithm.GraphSearch;
 using AIPlayground.Search.Problem;
 using AIPlayground.Search.Problem.State;
 using Common;
+using AIPlayground;
 
 namespace CLI
 {
@@ -25,14 +26,21 @@ namespace CLI
             using (new OperationMonitor("sender", "sleep",time))
             {
               
+				Grid problem = new Grid ("../../Examples/2DGrid/ex1.map");
 
-                MagicSquare problem = new MagicSquare(3);
-                SearchAlgorithm sa = new DepthFirstSearch(problem);
-                res = sa.Search();
-                Console.WriteLine("c: " + problem.c);
+				foreach(var state in problem.Expand (problem.InitialState))
+					Console.WriteLine (state);
+
+				SearchAlgorithm sa = new DepthFirstSearch (problem);
+				res = sa.Search ();
+//                MagicSquare problem = new MagicSquare(3);
+//                SearchAlgorithm sa = new DepthFirstSearch(problem);
+//                res = sa.Search();
+//                Console.WriteLine("c: " + problem.c);
 
             }
             Console.WriteLine(res);
+			printPath (res);
             Console.In.Read();
 
             
@@ -43,5 +51,9 @@ namespace CLI
         {
             Console.Out.WriteLine(result);
         }
+
+		private static void printPath(SearchNode n){
+			Console.WriteLine ("Path: {0}", n.getPath());
+		}
     }
 }

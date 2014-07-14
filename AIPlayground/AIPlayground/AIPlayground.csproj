@@ -37,8 +37,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\MagicSquare.cs" />
-    <Compile Include="Examples\MagicSquareState.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\Algorithm\GraphSearch\BreadthFirstSearch.cs" />

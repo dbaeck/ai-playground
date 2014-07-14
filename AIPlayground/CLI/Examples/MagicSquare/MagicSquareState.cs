@@ -42,11 +42,6 @@ namespace AIPlayground.Examples
 			return stateEquals(obj);
 		}
 
-		public override int GetHashCode()
-		{
-			return getStateHashCode ();
-		}
-
 		private String getFieldRepresentation(){
 			StringBuilder rep = new StringBuilder();
 			foreach (var f in CurrentSquare) {

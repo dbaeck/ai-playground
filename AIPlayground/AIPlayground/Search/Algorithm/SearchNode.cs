@@ -49,6 +49,13 @@ namespace AIPlayground.Search.Algorithm
 		{
 			return CurrentState.GetHashCode();
 		}
+		public string getPath()
+		{
+			if (this.ParentNode == null)
+				return ToString();
+
+			return ToString () + ParentNode.getPath ();
+		}
 	}
 }
 
