@@ -7,9 +7,23 @@ namespace AIPlayground
 {
 	public class Fringe : List<SearchNode>
 	{
+	
+		public delegate int SortDelegate(SearchNode n1, SearchNode n2);
+
 		public Fringe ()
 		{
 
+		}
+
+		public int bla(SearchNode s1, SearchNode s2){
+			return 0;
+		}
+
+		public void SortedInsert(IEnumerable<SearchNode> nodes, SortDelegate del){
+			foreach (var searchNode in nodes)
+				this.Add (searchNode);
+
+			this.Sort (del);
 		}
 
 		public void Enqueue(IEnumerable<SearchNode> nodes)
@@ -50,6 +64,8 @@ namespace AIPlayground
 				Insert(0,node);
 			}
 		}
+
+
 	}
 }
 

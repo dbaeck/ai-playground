@@ -31,7 +31,7 @@ namespace CLI
 				foreach(var state in problem.Expand (problem.InitialState))
 					Console.WriteLine (state);
 
-				SearchAlgorithm sa = new DepthFirstSearch (problem);
+				SearchAlgorithm sa = new UniformCostSearch (problem);
 				res = sa.Search ();
 //                MagicSquare problem = new MagicSquare(3);
 //                SearchAlgorithm sa = new DepthFirstSearch(problem);
