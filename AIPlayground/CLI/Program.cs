@@ -39,7 +39,7 @@ namespace CLI
 				foreach(var state in problem.Expand (problem.InitialState))
 					Console.WriteLine (state);
 
-				SearchAlgorithm sa = new UniformCostSearch (problem);
+				SearchAlgorithm sa = new IterativeDeepeningSearch (problem);
 				DotGraphFormatter graph = new DotGraphFormatter (sa);
 				graph.OnChange += WriteToFile;
 
@@ -50,8 +50,9 @@ namespace CLI
 //                Console.WriteLine("c: " + problem.c);
 
             }
+			Console.WriteLine ("Blaaaaaaaa");
             Console.WriteLine(res);
-			printPath (res);
+			if(res!=null) printPath (res);
             Console.In.Read();
 
             
