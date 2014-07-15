@@ -8,6 +8,10 @@ namespace AIPlayground.Search.Algorithm
 	{
 		public IState CurrentState {get;set;}
 		public SearchNode ParentNode {get;set;}
+		public int Generated { get; private set; }
+		public int Expanded { get; set; }
+		public bool onPathToGoal { get; set; }
+		public bool isGoal { get; set; }
 
 	    public int Depth
 	    {
@@ -19,9 +23,10 @@ namespace AIPlayground.Search.Algorithm
 
 	    public SearchNode(){}
 
-		public SearchNode(IState current,SearchNode parent){
+		public SearchNode(IState current,SearchNode parent, int generated = 0){
 			CurrentState = current;
 			ParentNode = parent;
+			Generated = generated;
 		}
 
 	    public override string ToString()
@@ -47,8 +52,14 @@ namespace AIPlayground.Search.Algorithm
 
 		public override int GetHashCode()
 		{
-			return CurrentState.GetHashCode();
+			return CurrentState.GetHashCode ();
 		}
+
+		public int ID()
+		{
+			return Generated;
+		}
+
 		public string getPath()
 		{
 			if (this.ParentNode == null)

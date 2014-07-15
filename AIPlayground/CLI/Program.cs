@@ -10,6 +10,7 @@ using AIPlayground.Search.Algorithm;
 using AIPlayground.Search.Algorithm.GraphSearch;
 using AIPlayground.Search.Problem;
 using AIPlayground.Search.Problem.State;
+using AIPlayground.Output;
 using Common;
 using AIPlayground;
 
@@ -17,6 +18,13 @@ namespace CLI
 {
     class Program
     {
+		static void WriteToFile(object sender, EventArgs e)
+		{
+			var w = new System.IO.StreamWriter ("graph.dot");
+			w.Write (sender);
+			w.Close ();
+		}
+
         static void Main(string[] args)
         {
 
@@ -32,6 +40,9 @@ namespace CLI
 					Console.WriteLine (state);
 
 				SearchAlgorithm sa = new UniformCostSearch (problem);
+				DotGraphFormatter graph = new DotGraphFormatter (sa);
+				graph.OnChange += WriteToFile;
+
 				res = sa.Search ();
 //                MagicSquare problem = new MagicSquare(3);
 //                SearchAlgorithm sa = new DepthFirstSearch(problem);

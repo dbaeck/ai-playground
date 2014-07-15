@@ -13,34 +13,41 @@ namespace AIPlayground.Search.Algorithm
 
 	public abstract class SearchAlgorithm
 	{
-		public SearchEvent onCreateNode;
+		public event EventHandler<SearchEventArgs> OnCreateNode;
+		public int NodeCount { get; set; }
 
         public SearchProblem Problem { get; private set; }
 	    protected SearchAlgorithm(SearchProblem problem)
 	    {
 	        Problem = problem;
             Fringe = new Fringe();
-	        var initNode = new SearchNode(Problem.InitialState, null);
+			var initNode = new SearchNode(Problem.InitialState, null, NodeCount++);
             Fringe.Add(initNode);
 	    }
 		public Fringe Fringe {get;private set;}
 
 		public abstract SearchNode Search();
 
+		public virtual SearchNode OnCreateNodeEvent(SearchNode node)
+		{
+			if(OnCreateNode != null)
+				OnCreateNode (this, new SearchEventArgs(node));
+			return node;
+		}
+
         protected SearchNode CreateSearchNode(IState current, SearchNode parent)
 	    {
-			//onCreateNode (new Event (), new EventArgs ());
-			return new SearchNode(current,parent);
+			return OnCreateNodeEvent(new SearchNode (current, parent, NodeCount++));
 	    }
 
         protected IEnumerable<SearchNode> CreateSearchNode(IEnumerable<IState> current, SearchNode parent)
 	    {
-            return current.Select(state => CreateSearchNode(state,parent));
+			return current.Select(state => CreateSearchNode(state,parent));
 	    }
 
 	    protected IEnumerable<SearchNode> CreateSearchNode(SearchNode parent, params IState[] current)
 	    {
-	        return CreateSearchNode(current, parent);
+			return CreateSearchNode(current, parent);
 	    }
 
 	}
