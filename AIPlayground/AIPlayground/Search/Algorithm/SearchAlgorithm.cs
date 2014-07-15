@@ -15,6 +15,7 @@ namespace AIPlayground.Search.Algorithm
 	{
 		public event EventHandler<SearchEventArgs> OnCreateNode;
 		public event EventHandler<SearchEventArgs> OnGoalReached;
+		public event EventHandler<SearchEventArgs> OnSearchFinished;
 
 		public int NodeCount { get; set; }
 
@@ -42,6 +43,16 @@ namespace AIPlayground.Search.Algorithm
 		{
 			if(OnGoalReached != null)
 				OnGoalReached (this, new SearchEventArgs(node));
+
+			SearchFinished (node);
+
+			return node;
+		}
+
+		public virtual SearchNode SearchFinished(SearchNode node = null)
+		{
+			if(OnSearchFinished != null)
+				OnSearchFinished (this, new SearchEventArgs(node));
 			return node;
 		}
 

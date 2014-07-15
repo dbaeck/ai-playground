@@ -39,7 +39,7 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 						cutoffHappened = true;
 				}
 				//break execusion when Fringe was empty before depth limit reached
-				if(!cutoffHappened) return null;
+				if(!cutoffHappened) return SearchFinished();
 			}
 		}
 

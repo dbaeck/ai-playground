@@ -49,6 +49,7 @@
     <Compile Include="Examples\2DGrid\GridState.cs" />
     <Compile Include="Examples\MagicSquare\MagicSquare.cs" />
     <Compile Include="Examples\MagicSquare\MagicSquareState.cs" />
+    <Compile Include="CLIControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

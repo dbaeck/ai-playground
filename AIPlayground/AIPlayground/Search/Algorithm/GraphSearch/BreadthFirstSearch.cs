@@ -33,7 +33,7 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
                     ClosedList.Add(current);
                 }
             }
-            return null;
+			return SearchFinished();
         }
     }
 }
