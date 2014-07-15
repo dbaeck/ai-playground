@@ -25,13 +25,12 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch{
 
 		public override IEnumerable<SearchNode> GetGoalPath(IEnumerable<SearchNode> goal)
 		{
-			SearchNode forwardNode = goal.ElementAt (0);
-			SearchNode backwardNode = goal.ElementAt (1);
+			List<SearchNode> l = goal.ToList();
 
-			foreach (var node in GetGoalPath(forwardNode)) {
+			foreach (var node in GetGoalPath(l[0])) {
 				yield return node;
 			}
-			foreach (var node in GetGoalPath(backwardNode.ParentNode).Reverse()) {
+			foreach (var node in GetGoalPath(l[1].ParentNode).Reverse()) {
 				yield return node;
 			}
 		}

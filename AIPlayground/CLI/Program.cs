@@ -27,6 +27,5 @@ namespace CLI
 			ctrl.evaluateArgs (args);
 			ctrl.runAlgorithm ();
 		}
-
 	}
 }

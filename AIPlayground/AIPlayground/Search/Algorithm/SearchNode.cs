@@ -13,6 +13,7 @@ namespace AIPlayground.Search.Algorithm
 		public int Expanded { get; set; }
 		public bool onPathToGoal { get; set; }
 		public bool isGoal { get; set; }
+		public List<SearchNode> Edges { get; set; }
 
 	    public int Depth
 	    {
@@ -28,6 +29,7 @@ namespace AIPlayground.Search.Algorithm
 			CurrentState = current;
 			ParentNode = parent;
 			Generated = generated;
+			this.Edges = new List<SearchNode> ();
 		}
 
 	    public override string ToString()

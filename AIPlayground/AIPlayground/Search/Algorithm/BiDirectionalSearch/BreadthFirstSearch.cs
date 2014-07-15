@@ -18,17 +18,20 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 
 		public override IEnumerable<SearchNode> Search()
 		{
-			while (BackwardFringe.Any() && Fringe.Any ()) {
+			bool found = false;
+			SearchNode current = null;
+			SearchNode other = null;
 
+			while (BackwardFringe.Any() && Fringe.Any () && !found) 
+			{
 				//start->goal direction
-				SearchNode current = Fringe.Dequeue();
+				current = Fringe.Dequeue();
 				if (/*Problem.GoalCheck (current) || */BackwardFringe.Contains (current)) 
 				{
-					yield return current;
-					yield return GoalReached(BackwardFringe.Find (x => x.Equals (current)));
-					break;
+					found = true;
+					other = BackwardFringe.Find (x => x.Equals (current));
 				}
-				if (!ClosedList.Contains(current))
+				if (!ClosedList.Contains(current) && !found)
 				{
 					Fringe.Enqueue(CreateSearchNode(Problem.Expand(current.CurrentState), current));
 					ClosedList.Add(current);
@@ -36,19 +39,28 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 
 				//goal->start direction
 				SearchNode currentReverse = BackwardFringe.Dequeue();
-				if (/*Problem.InitialState.Equals (currentReverse) ||*/ Fringe.Contains (currentReverse)) 
+				if (/*Problem.InitialState.Equals (currentReverse) ||*/ Fringe.Contains (currentReverse) && !found) 
 				{
-					yield return Fringe.Find (x => x.Equals (currentReverse));
-					yield return GoalReached(currentReverse);
-					break;
+					found = true;
+					current = currentReverse;
+					other = Fringe.Find (x => x.Equals (currentReverse));
 				}
-				if (!BackwardClosedList.Contains(currentReverse))
+				if (!BackwardClosedList.Contains(currentReverse) &&!found)
 				{
 					BackwardFringe.Enqueue(CreateSearchNode(Problem.Expand(currentReverse.CurrentState), currentReverse));
 					BackwardClosedList.Add(currentReverse);
 				}
-			}
 
+				if(found)
+				{
+					current.Edges.Add (other);
+					yield return GoalReached(current);
+					yield return GoalReached(other);
+					yield break;
+				}
+						
+			}
+	
 			SearchFinished ();
 		}
 

@@ -165,7 +165,7 @@ namespace CLI
 		{
 			SearchAlgorithm a = makeAlgorithm (this.currentAlgorithm, makeProblem (this.currentProblem, this.parameters));
 			DotGraphFormatter graph = new DotGraphFormatter (a);
-			graph.OnChange += WriteToFileIncremental;
+			graph.OnChange += WriteToFile;
 			IEnumerable<SearchNode> res = null;
 
 			using (new OperationMonitor("sender", "sleep",time))
