@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AIPlayground.Examples;
 using AIPlayground.Search.Algorithm;
-using AIPlayground.Search.Algorithm.GraphSearch;
+using AIPlayground.Search.Algorithm.BiDirectionalSearch;
 using AIPlayground.Search.Problem;
 using AIPlayground.Search.Problem.State;
 using Common;
@@ -31,7 +31,7 @@ namespace CLI
 				foreach(var state in problem.Expand (problem.InitialState))
 					Console.WriteLine (state);
 					
-				SearchAlgorithm sa = new BiDirectionalSearch (problem, new GridState(problem.Goal.X, problem.Goal.Y,0));
+				SearchAlgorithm sa = new BreadthFirstSearch (problem, new GridState(problem.Goal.X, problem.Goal.Y,0));
 				res = sa.Search ();
 //                MagicSquare problem = new MagicSquare(3);
 //                SearchAlgorithm sa = new DepthFirstSearch(problem);

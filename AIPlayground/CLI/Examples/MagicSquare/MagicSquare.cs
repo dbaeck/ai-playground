@@ -10,8 +10,7 @@ namespace AIPlayground.Examples
 {
     public class MagicSquare:SearchProblem
     {
-
-        public int c = 0;
+	
         private int n;
         private int solution;
 
@@ -24,7 +23,6 @@ namespace AIPlayground.Examples
 
         public override bool GoalCheck(IState current)
         {
-            c++;
             var magicCurrent = (MagicSquareState) current;
 
             if (magicCurrent.GetCurrentNumber() < n * n) return false;
