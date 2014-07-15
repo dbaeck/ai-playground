@@ -25,6 +25,13 @@ namespace CLI
 			w.Close ();
 		}
 
+		static System.IO.StreamWriter fileIncremental = new System.IO.StreamWriter ("graph_incremental.dot");
+
+		static void WriteToFileIncremental(object sender, EventArgs e)
+		{
+			fileIncremental.Write ((sender as DotGraphFormatter).nextString ());
+		}
+
         static void Main(string[] args)
         {
 
@@ -50,6 +57,9 @@ namespace CLI
 //                Console.WriteLine("c: " + problem.c);
 
             }
+
+			fileIncremental.Close ();
+
 			Console.WriteLine ("Blaaaaaaaa");
             Console.WriteLine(res);
 			if(res!=null) printPath (res);
@@ -65,7 +75,7 @@ namespace CLI
         }
 
 		private static void printPath(SearchNode n){
-			Console.WriteLine ("Path: {0}", n.getPath());
+			Console.WriteLine(string.Join("\n", n.getPath()));
 		}
     }
 }

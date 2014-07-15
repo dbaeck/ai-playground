@@ -25,7 +25,8 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
             {
                 
                 current = Fringe.Dequeue();
-                if (Problem.GoalCheck(current.CurrentState)) return current;
+                if (Problem.GoalCheck(current.CurrentState)) 
+					return GoalReached(current);
                 if (!ClosedList.Contains(current))
                 {
                     Fringe.Enqueue(CreateSearchNode(Problem.Expand(current.CurrentState), current));

@@ -1,5 +1,6 @@
 ﻿using System;
 using AIPlayground.Search.Problem.State;
+using System.Collections.Generic;
 
 namespace AIPlayground.Search.Algorithm
 {
@@ -60,12 +61,12 @@ namespace AIPlayground.Search.Algorithm
 			return Generated;
 		}
 
-		public string getPath()
+		public IEnumerable<SearchNode> getPath()
 		{
-			if (this.ParentNode == null)
-				return ToString();
-
-			return ToString () + ParentNode.getPath ();
+			if (this.ParentNode != null)
+				foreach (var node in this.ParentNode.getPath())
+					yield return node;
+			yield return this;
 		}
 	}
 }

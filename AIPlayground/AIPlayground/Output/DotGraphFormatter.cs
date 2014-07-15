@@ -11,18 +11,30 @@ namespace AIPlayground.Output
 
 		public event EventHandler<EventArgs> OnChange;
 
+		private bool fileSetup = true;
+		private bool fileClose = false;
+		private SearchNode nextNode = null;
+
 		public DotGraphFormatter (SearchAlgorithm algorithm)
 		{
 			this.Nodes = new Dictionary<int, SearchNode> ();
 			algorithm.OnCreateNode += NodeCreated;
+			algorithm.OnGoalReached += GoalReached;
 		}
 
 		public void NodeCreated(object sender, SearchEventArgs e)
 		{
 			Nodes.Add(e.Node.ID(), e.Node);
+			nextNode = e.Node;
 			OnChangeEvent ();
 		}
 
+		public void GoalReached(object sender, SearchEventArgs e)
+		{
+			this.fileClose = true;
+			OnChangeEvent ();
+		}
+	
 		public void OnChangeEvent()
 		{
 			if (OnChange != null)
@@ -41,9 +53,27 @@ namespace AIPlayground.Output
 			return output;
 		}
 
+		public string nextString()
+		{
+			string output = "";
+			if(this.fileSetup)
+				output += "digraph SearchGraph\n{";
+
+			this.fileSetup = false;
+
+			output += nodeRepresentation (this.nextNode);
+
+			if (this.fileClose)
+				output += "\n}";
+
+			return output;
+
+		}
+
 		private string nodeRepresentation(SearchNode node)
 		{
-			var output = String.Format ("{0}[label=\"{1}\\n{2}\"];\n", node.ID(), node.ID(), node.CurrentState);
+			var color = node.isGoal ? "color=blue" : (node.onPathToGoal ? "color=lightblue":"");
+			var output = String.Format ("{0}[label=\"{1}\\n{2}\", style=filled, {3}];\n", node.ID(), node.ID(), node.CurrentState, color);
 			if(node.ParentNode != null)
 				output += String.Format ("{0}->{1};\n",node.ParentNode.ID(), node.ID());
 			return output;

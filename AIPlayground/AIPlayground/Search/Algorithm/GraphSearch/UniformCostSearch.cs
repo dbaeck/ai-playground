@@ -20,7 +20,8 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 			while(Fringe.Any())
 			{
 				current = Fringe.Dequeue();
-				if (Problem.GoalCheck(current.CurrentState)) return current;
+				if (Problem.GoalCheck(current.CurrentState)) 
+					return GoalReached(current);
 				if (!ClosedList.Contains(current))
 				{
 					Fringe.SortedInsert(CreateSearchNode(Problem.Expand(current.CurrentState), current), new CostComparer());
