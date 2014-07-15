@@ -1,5 +1,6 @@
 ﻿using System;
 using AIPlayground.Search.Problem.State;
+using System.Collections.Generic;
 
 namespace AIPlayground.Search.Algorithm
 {
@@ -8,6 +9,10 @@ namespace AIPlayground.Search.Algorithm
 	{
 		public IState CurrentState {get;set;}
 		public SearchNode ParentNode {get;set;}
+		public int Generated { get; private set; }
+		public int Expanded { get; set; }
+		public bool onPathToGoal { get; set; }
+		public bool isGoal { get; set; }
 
 	    public int Depth
 	    {
@@ -19,9 +24,10 @@ namespace AIPlayground.Search.Algorithm
 
 	    public SearchNode(){}
 
-		public SearchNode(IState current,SearchNode parent){
+		public SearchNode(IState current,SearchNode parent, int generated = 0){
 			CurrentState = current;
 			ParentNode = parent;
+			Generated = generated;
 		}
 
 	    public override string ToString()
@@ -47,14 +53,20 @@ namespace AIPlayground.Search.Algorithm
 
 		public override int GetHashCode()
 		{
-			return CurrentState.GetHashCode();
+			return CurrentState.GetHashCode ();
 		}
-		public string getPath()
-		{
-			if (this.ParentNode == null)
-				return ToString();
 
-			return ToString () + ParentNode.getPath ();
+		public int ID()
+		{
+			return Generated;
+		}
+
+		public IEnumerable<SearchNode> getPath()
+		{
+			if (this.ParentNode != null)
+				foreach (var node in this.ParentNode.getPath())
+					yield return node;
+			yield return this;
 		}
 	}
 }

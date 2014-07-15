@@ -30,7 +30,7 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 					current = Fringe.Pop();
 					if (current.Depth <= depthLimit) {
 						if (Problem.GoalCheck (current.CurrentState))
-							return current;
+							return GoalReached(current);
 						if (!ClosedList.Contains (current)) {
 							Fringe.Push (CreateSearchNode (Problem.Expand (current.CurrentState), current));
 							ClosedList.Add (current);
@@ -39,7 +39,7 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 						cutoffHappened = true;
 				}
 				//break execusion when Fringe was empty before depth limit reached
-				if(!cutoffHappened) return null;
+				if(!cutoffHappened) return SearchFinished();
 			}
 		}
 

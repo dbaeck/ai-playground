@@ -52,11 +52,11 @@
     <Compile Include="Search\Problem\Heuristic\IHeuristic.cs" />
     <Compile Include="Search\Algorithm\Fringe.cs" />
     <Compile Include="Output\DotGraphFormatter.cs" />
-    <Compile Include="Search\Event.cs" />
     <Compile Include="Search\Algorithm\GraphSearch\UniformCostSearch.cs" />
     <Compile Include="Search\Algorithm\Comparers.cs" />
     <Compile Include="Search\Algorithm\GraphSearch\IterativeDeepeningSearch.cs" />
     <Compile Include="Search\Algorithm\GraphSearch\BiDirectionalSearch.cs" />
+    <Compile Include="Search\Algorithm\Event.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
