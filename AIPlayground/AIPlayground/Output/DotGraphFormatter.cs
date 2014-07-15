@@ -63,17 +63,20 @@ namespace AIPlayground.Output
 
 			output += nodeRepresentation (this.nextNode);
 
-			if (this.fileClose)
+			if (this.fileClose) 
+			{
+				foreach (var n in this.nextNode.getPath())
+					output += nodeRepresentation (n, false);
 				output += "\n}";
-
+			}
 			return output;
 
 		}
 
-		private string nodeRepresentation(SearchNode node)
+		private string nodeRepresentation(SearchNode node, bool withEdges = true)
 		{
-			var color = node.isGoal ? "color=blue" : (node.onPathToGoal ? "color=lightblue":"");
-			var output = String.Format ("{0}[label=\"{1}\\n{2}\", style=filled, {3}];\n", node.ID(), node.ID(), node.CurrentState, color);
+			var color = node.isGoal ? ", style=filled, color=blue" : (node.onPathToGoal ? ", style=filled, color=lightblue":"");
+			var output = String.Format ("{0}[label=\"{1}\\n{2}\" {3}];\n", node.ID(), node.ID(), node.CurrentState, color);
 			if(node.ParentNode != null)
 				output += String.Format ("{0}->{1};\n",node.ParentNode.ID(), node.ID());
 			return output;

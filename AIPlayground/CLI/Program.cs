@@ -46,9 +46,9 @@ namespace CLI
 				foreach(var state in problem.Expand (problem.InitialState))
 					Console.WriteLine (state);
 
-				SearchAlgorithm sa = new IterativeDeepeningSearch (problem);
+				SearchAlgorithm sa = new DepthFirstSearch (problem);
 				DotGraphFormatter graph = new DotGraphFormatter (sa);
-				graph.OnChange += WriteToFile;
+				graph.OnChange += WriteToFileIncremental;
 
 				res = sa.Search ();
 //                MagicSquare problem = new MagicSquare(3);
