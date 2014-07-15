@@ -13,22 +13,21 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
         {
         }
 
-        public override SearchNode Search()
+        public override IEnumerable<SearchNode> Search()
         {
             SearchNode current = null;
             while (Fringe.Any())
             {
-
                 current = Fringe.Pop();
                 if (Problem.GoalCheck(current.CurrentState)) 
-					return GoalReached(current);
+					yield return GoalReached(current);
                 if (!ClosedList.Contains(current))
                 {
                     Fringe.Push(CreateSearchNode(Problem.Expand(current.CurrentState), current));
 					ClosedList.Add(current);
                 }
             }
-			return SearchFinished();
+			SearchFinished();
         }
 
         

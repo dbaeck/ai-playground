@@ -30,7 +30,7 @@ namespace AIPlayground.Search.Algorithm
 	    }
 		public Fringe Fringe {get;private set;}
 
-		public abstract SearchNode Search();
+		public abstract IEnumerable<SearchNode> Search();
 
 		public virtual SearchNode OnCreateNodeEvent(SearchNode node)
 		{
@@ -60,7 +60,7 @@ namespace AIPlayground.Search.Algorithm
 		{
 			var goal = e.Node;
 			goal.isGoal = true;
-			foreach (var n in goal.getPath())
+			foreach (var n in GetGoalPath(goal))
 				n.onPathToGoal = true;
 		}
 
@@ -86,7 +86,17 @@ namespace AIPlayground.Search.Algorithm
 	    {
 			return CreateSearchNode(current, parent);
 	    }
-			
+
+		public virtual IEnumerable<SearchNode> GetGoalPath(IEnumerable<SearchNode> goal){
+			return GetGoalPath(goal.FirstOrDefault());
+		}
+
+		public virtual IEnumerable<SearchNode> GetGoalPath(SearchNode goal){
+			if (goal.ParentNode != null)
+				foreach (var node in GetGoalPath(goal.ParentNode))
+					yield return node;
+			yield return goal;
+		}
 
 	}
 }

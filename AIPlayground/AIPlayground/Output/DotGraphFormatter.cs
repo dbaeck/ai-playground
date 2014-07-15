@@ -65,8 +65,8 @@ namespace AIPlayground.Output
 
 			if (this.fileClose) 
 			{
-				foreach (var n in this.nextNode.getPath())
-					output += nodeRepresentation (n, false);
+				//foreach (var n in this.nextNode.getPath())
+				//	output += nodeRepresentation (n, false);
 				output += "\n}";
 			}
 			return output;

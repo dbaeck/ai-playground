@@ -16,7 +16,7 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 
 		}
 
-		public override SearchNode Search()
+		public override IEnumerable<SearchNode> Search()
 		{
 			while (BackwardFringe.Any() && Fringe.Any ()) {
 
@@ -24,9 +24,9 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 				SearchNode current = Fringe.Dequeue();
 				if (/*Problem.GoalCheck (current) || */BackwardFringe.Contains (current)) 
 				{
-					//TODO: update parent relationship
-					BackwardFringe.Find (x => x.Equals(current)).ParentNode = current.ParentNode;
-					return GoalNode;
+					yield return current;
+					yield return GoalReached(BackwardFringe.Find (x => x.Equals (current)));
+					break;
 				}
 				if (!ClosedList.Contains(current))
 				{
@@ -38,8 +38,9 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 				SearchNode currentReverse = BackwardFringe.Dequeue();
 				if (/*Problem.InitialState.Equals (currentReverse) ||*/ Fringe.Contains (currentReverse)) 
 				{
-					currentReverse.ParentNode = Fringe.Find (x => x.Equals(currentReverse)).ParentNode;
-					return GoalNode;
+					yield return Fringe.Find (x => x.Equals (currentReverse));
+					yield return GoalReached(currentReverse);
+					break;
 				}
 				if (!BackwardClosedList.Contains(currentReverse))
 				{
@@ -48,7 +49,7 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 				}
 			}
 
-			return null;
+			SearchFinished ();
 		}
 
 			

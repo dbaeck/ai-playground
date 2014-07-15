@@ -60,14 +60,6 @@ namespace AIPlayground.Search.Algorithm
 		{
 			return Generated;
 		}
-
-		public IEnumerable<SearchNode> getPath()
-		{
-			if (this.ParentNode != null)
-				foreach (var node in this.ParentNode.getPath())
-					yield return node;
-			yield return this;
-		}
 	}
 }
 

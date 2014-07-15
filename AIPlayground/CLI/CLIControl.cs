@@ -1,11 +1,13 @@
 ﻿using System;
 using AIPlayground.Search.Problem;
 using AIPlayground.Examples;
-using AIPlayground.Search.Algorithm.GraphSearch;
+
 using AIPlayground.Search.Algorithm;
 using AIPlayground;
 using AIPlayground.Output;
 using Common;
+using System.Collections.Generic;
+
 
 namespace CLI
 {
@@ -27,7 +29,8 @@ namespace CLI
 		BreadthFirstSearch,
 		DepthFirstSearch,
 		IterativeDeepeningSearch,
-		UniformCostSearch
+		UniformCostSearch,
+		BiDirectionalSearch
 	}
 
 	public class CLIControl
@@ -55,10 +58,6 @@ namespace CLI
 		private static void time(string result)
 		{
 			Console.Out.WriteLine(result);
-		}
-
-		private static void printPath(SearchNode n){
-			Console.WriteLine(string.Join("\n", n.getPath()));
 		}
 
 		public CLIControl (string parameters = "ex1.map", 
@@ -125,13 +124,15 @@ namespace CLI
 			switch (a) {
 			case AvailableAlgorithm.BreadthFirstSearch:
 			default:
-				return new BreadthFirstSearch (p);
+				return new AIPlayground.Search.Algorithm.GraphSearch.BreadthFirstSearch (p);
 			case AvailableAlgorithm.DepthFirstSearch:
-				return new DepthFirstSearch (p);
+				return new AIPlayground.Search.Algorithm.GraphSearch.DepthFirstSearch (p);
 			case AvailableAlgorithm.IterativeDeepeningSearch:
-				return new IterativeDeepeningSearch (p);
+				return new AIPlayground.Search.Algorithm.GraphSearch.IterativeDeepeningSearch (p);
 			case AvailableAlgorithm.UniformCostSearch:
-				return new UniformCostSearch (p);
+				return new AIPlayground.Search.Algorithm.GraphSearch.UniformCostSearch (p);
+			case AvailableAlgorithm.BiDirectionalSearch:
+				return new AIPlayground.Search.Algorithm.BiDirectionalSearch.BreadthFirstSearch (p,new GridState(((Grid)p).Goal.X,((Grid)p).Goal.Y,0));
 			}
 		}
 
@@ -162,23 +163,24 @@ namespace CLI
 
 		public void runAlgorithm()
 		{
-			SearchNode res = null;
+			SearchAlgorithm a = makeAlgorithm (this.currentAlgorithm, makeProblem (this.currentProblem, this.parameters));
+			DotGraphFormatter graph = new DotGraphFormatter (a);
+			graph.OnChange += WriteToFileIncremental;
+			IEnumerable<SearchNode> res = null;
+
 			using (new OperationMonitor("sender", "sleep",time))
 			{
-				SearchAlgorithm a = makeAlgorithm (this.currentAlgorithm, makeProblem (this.currentProblem, this.parameters));
-				DotGraphFormatter graph = new DotGraphFormatter (a);
-				graph.OnChange += WriteToFileIncremental;
 				res = a.Search ();
-				a.Search ();
 			}
 
-			fileIncremental.Close ();
+
 
 			Console.WriteLine ("Search finished");
-			Console.WriteLine(res);
 
 			if(res!=null) 
-				printPath (res);
+				Console.WriteLine(string.Join("\n", a.GetGoalPath(res)));
+
+			fileIncremental.Close ();
 		}
 	}
 }
