@@ -22,9 +22,9 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 		{
 
 			SearchNode current = null;
-
 			while (true) {
 				nextIteration ();
+				bool cutoffHappened = false;
 				while(Fringe.Any())
 				{
 					current = Fringe.Pop();
@@ -32,13 +32,14 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 						if (Problem.GoalCheck (current.CurrentState))
 							return current;
 						if (!ClosedList.Contains (current)) {
-							Fringe.Push(CreateSearchNode(Problem.Expand(current.CurrentState), current));;
+							Fringe.Push (CreateSearchNode (Problem.Expand (current.CurrentState), current));
 							ClosedList.Add (current);
 						}
-					} 
+					} else
+						cutoffHappened = true;
 				}
 				//break execusion when Fringe was empty before depth limit reached
-				if(current.Depth < depthLimit) return null;
+				if(!cutoffHappened) return null;
 			}
 		}
 
