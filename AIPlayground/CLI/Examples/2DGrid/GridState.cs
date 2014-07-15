@@ -1,7 +1,7 @@
 ﻿using System;
 using AIPlayground.Search.Problem.State;
 
-namespace AIPlayground
+namespace AIPlayground.Examples
 {
 	public class Point
 	{

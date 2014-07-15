@@ -3,17 +3,17 @@ using AIPlayground.Search.Problem.State;
 
 namespace AIPlayground.Search.Algorithm
 {
-	//TODO: Make implement iCompareable
+
 	public class SearchNode
 	{
 		public IState CurrentState {get;set;}
 		public SearchNode ParentNode {get;set;}
 
-	    public int Depht
+	    public int Depth
 	    {
 	        get
 	        {
-	            return (ParentNode == null) ? 0 : ParentNode.Depht+1;
+	            return (ParentNode == null) ? 0 : ParentNode.Depth+1;
 	        }
 	    }
 
@@ -26,7 +26,7 @@ namespace AIPlayground.Search.Algorithm
 
 	    public override string ToString()
 	    {
-	        return string.Format("Depth: {0} {1}{2}", Depht, Environment.NewLine, CurrentState);
+	        return string.Format("Depth: {0} {1}{2}", Depth, Environment.NewLine, CurrentState);
 	    }
 
 		public override bool Equals(object obj)

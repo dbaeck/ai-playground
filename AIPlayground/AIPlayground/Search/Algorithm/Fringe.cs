@@ -16,10 +16,6 @@ namespace AIPlayground
 
 		}
 
-		public int bla(SearchNode s1, SearchNode s2){
-			return 0;
-		}
-
 		public void SortedInsert(IEnumerable<SearchNode> nodes, IComparer<SearchNode> del){
 			foreach (var searchNode in nodes)
 				this.Add (searchNode);

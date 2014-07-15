@@ -29,7 +29,7 @@ namespace AIPlayground.Search.Algorithm
 
         protected SearchNode CreateSearchNode(IState current, SearchNode parent)
 	    {
-			onCreateNode (new Event (), new EventArgs ());
+			//onCreateNode (new Event (), new EventArgs ());
 			return new SearchNode(current,parent);
 	    }
 
