@@ -30,8 +30,8 @@ namespace CLI
 
 				foreach(var state in problem.Expand (problem.InitialState))
 					Console.WriteLine (state);
-
-				SearchAlgorithm sa = new IterativeDeepeningSearch (problem);
+					
+				SearchAlgorithm sa = new BiDirectionalSearch (problem, new GridState(problem.Goal.X, problem.Goal.Y,0));
 				res = sa.Search ();
 //                MagicSquare problem = new MagicSquare(3);
 //                SearchAlgorithm sa = new DepthFirstSearch(problem);
@@ -39,7 +39,6 @@ namespace CLI
 //                Console.WriteLine("c: " + problem.c);
 
             }
-			Console.WriteLine ("Blaaaaaaaa");
             Console.WriteLine(res);
 			if(res!=null) printPath (res);
             Console.In.Read();

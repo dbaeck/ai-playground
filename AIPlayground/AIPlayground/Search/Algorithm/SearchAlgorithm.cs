@@ -33,15 +33,24 @@ namespace AIPlayground.Search.Algorithm
 			return new SearchNode(current,parent);
 	    }
 
+//		protected SearchNode CreateSearchNodeReverse(IState current, SearchNode child)
+//		{
+//			//onCreateNode (new Event (), new EventArgs ());
+//			var parent = new SearchNode(current,null);
+//			child.ParentNode = parent;
+//			return parent;
+//		}
+
         protected IEnumerable<SearchNode> CreateSearchNode(IEnumerable<IState> current, SearchNode parent)
 	    {
-            return current.Select(state => CreateSearchNode(state,parent));
+			return current.Select(state => CreateSearchNode(state,parent));
 	    }
 
 	    protected IEnumerable<SearchNode> CreateSearchNode(SearchNode parent, params IState[] current)
 	    {
 	        return CreateSearchNode(current, parent);
 	    }
+			
 
 	}
 }

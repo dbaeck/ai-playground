@@ -27,8 +27,8 @@ namespace AIPlayground
 		{
 			foreach (var searchNode in nodes)
 			{
-				//fringe.Add(searchNode);
-				this.Insert((this.Count==0)?0:this.Count-1,searchNode);
+				this.Add(searchNode);
+				//this.Insert((this.Count==0)?0:this.Count,searchNode);
 			}
 		}
 
