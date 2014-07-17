@@ -37,6 +37,7 @@ namespace AIPlayground.Search.Algorithm
 	    protected SearchAlgorithm(SearchProblem problem)
 	    {
 	        Problem = problem;
+			Problem.OnExpand += OnExpandNode;
             Fringe = new Fringe();
 			var initNode = new SearchNode(Problem.InitialState, null, NodeCount++);
             Fringe.Add(initNode);

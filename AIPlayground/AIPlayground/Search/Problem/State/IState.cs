@@ -7,7 +7,7 @@ namespace AIPlayground.Search.Problem.State
 	/// </summary>
 	public abstract class IState
 	{
-		public double Cost {get;set;}
+		public double Cost {get;set;}	//TODO: Costs need to be somewhere else - these are path costs that can be different for the same reached state
 
 		public override bool Equals(object obj)
 		{

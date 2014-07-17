@@ -39,7 +39,7 @@ namespace AIPlayground.Search.Algorithm.TreeSearch
 				if (Problem.GoalCheck(current.CurrentState)) 
 					yield return GoalReached(current);
 
-				Fringe.SortedInsert(CreateSearchNode(Problem.Expand(current.CurrentState), current), new CostComparer());
+				Fringe.SortedInsert(CreateSearchNode(Problem.Expand(current), current), new CostComparer());
 			}
 			SearchFinished();
 		}

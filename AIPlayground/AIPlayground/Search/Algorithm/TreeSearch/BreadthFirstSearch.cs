@@ -40,7 +40,7 @@ namespace AIPlayground.Search.Algorithm.TreeSearch
                 if (Problem.GoalCheck(current.CurrentState)) 
 					yield return GoalReached(current);
                 
-                Fringe.Enqueue(CreateSearchNode(Problem.Expand(current.CurrentState), current));
+                Fringe.Enqueue(CreateSearchNode(Problem.Expand(current), current));
             }
 			SearchFinished();
         }

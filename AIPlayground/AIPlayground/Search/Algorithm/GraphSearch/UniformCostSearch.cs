@@ -42,7 +42,7 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 					yield return GoalReached(current);
 				if (!ClosedList.Contains(current))
 				{
-					Fringe.SortedInsert(CreateSearchNode(Problem.Expand(current.CurrentState), current), new CostComparer());
+					Fringe.SortedInsert(CreateSearchNode(Problem.Expand(current), current), new CostComparer());
 					ClosedList.Add(current);
 				}
 			}

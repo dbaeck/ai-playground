@@ -46,7 +46,7 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 				}
 				if (!ClosedList.Contains(current) && !found)
 				{
-					Fringe.Enqueue(CreateSearchNode(Problem.Expand(current.CurrentState), current));
+					Fringe.Enqueue(CreateSearchNode(Problem.Expand(current), current));
 					ClosedList.Add(current);
 				}
 
@@ -60,7 +60,7 @@ namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 				}
 				if (!BackwardClosedList.Contains(currentReverse) &&!found)
 				{
-					BackwardFringe.Enqueue(CreateSearchNode(Problem.Expand(currentReverse.CurrentState), currentReverse));
+					BackwardFringe.Enqueue(CreateSearchNode(Problem.Expand(currentReverse), currentReverse));
 					BackwardClosedList.Add(currentReverse);
 				}
 

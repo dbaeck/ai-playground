@@ -39,7 +39,7 @@ namespace AIPlayground.Search.Algorithm.GraphSearch
 					yield return GoalReached(current);
                 if (!ClosedList.Contains(current))
                 {
-                    Fringe.Push(CreateSearchNode(Problem.Expand(current.CurrentState), current));
+                    Fringe.Push(CreateSearchNode(Problem.Expand(current), current));
 					ClosedList.Add(current);
                 }
             }

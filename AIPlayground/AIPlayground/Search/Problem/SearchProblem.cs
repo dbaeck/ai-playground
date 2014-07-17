@@ -20,6 +20,8 @@ namespace AIPlayground.Search.Problem
 		/// <value>The initial state.</value>
 		public IState InitialState{ get; set;}
 
+		public event EventHandler<SearchEventArgs> OnExpand;
+
 		/// <summary>
 		/// Informed Search problems can have heuristics that determine the next steps.
 		/// </summary>
@@ -27,10 +29,12 @@ namespace AIPlayground.Search.Problem
 		public IHeuristic<IState> Heuristic{ get; set;}	//TODO: not all problems have heuristics - class hierarchy
 
 		//TODO: decide how to implement blocking hooks for UI (idea: method calls protected expand every time event is received from UI) - hooks should be in the algorithm
-	    public IEnumerable<IState> Expand(IState current)
+		public IEnumerable<IState> Expand(SearchNode current)
 	    {
-            //TODO: implement block for UI
-	        return InternalExpand(current);
+			current.isExpanded = true;
+			if (OnExpand != null)
+				OnExpand (this, new SearchEventArgs(current));
+			return InternalExpand(current.CurrentState);
 	    }
 
 		/// <summary>

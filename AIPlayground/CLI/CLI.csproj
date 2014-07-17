@@ -41,6 +41,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Drawing" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -50,10 +53,14 @@
     <Compile Include="Examples\MagicSquare\MagicSquare.cs" />
     <Compile Include="Examples\MagicSquare\MagicSquareState.cs" />
     <Compile Include="CLIControl.cs" />
+    <Compile Include="Examples\RomanianRoadMap\MapState.cs" />
+    <Compile Include="Examples\RomanianRoadMap\RoadMapProblem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Examples\2DGrid\ex1.map" />
+    <None Include="packages.config" />
+    <None Include="Examples\RomanianRoadMap\map.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AIPlayground\AIPlayground.csproj">
@@ -73,4 +80,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Examples\RomanianRoadMap\" />
+  </ItemGroup>
 </Project>

@@ -15,6 +15,8 @@ namespace AIPlayground.Search.Algorithm
 		public SearchNode ParentNode {get;set;}
 		public int Generated { get; private set; }
 		public int Expanded { get; set; }
+
+		public bool isExpanded;
 		public bool onPathToGoal { get; set; }
 		public bool isGoal { get; set; }
 		public List<SearchNode> Edges { get; set; }
