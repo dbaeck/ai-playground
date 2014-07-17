@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AIPlayground.Output
 {
-	public class DotGraphFormatter:INotifyOnGenerateNode, INotifyOnGoalReached
+	public class DotGraphFormatter:INotifyOnGenerateNode, INotifyOnGoalReached, INotifyOnExpandNode
 	{
 		public Dictionary<int, SearchNode> Nodes { get; set;}
 
@@ -22,6 +22,12 @@ namespace AIPlayground.Output
 			this.algorithm = algorithm;
 			algorithm.addObserver (this as INotifyOnGenerateNode);
 			algorithm.addObserver (this as INotifyOnGoalReached);
+			algorithm.addObserver (this as INotifyOnExpandNode);
+		}
+
+		public void OnExpandNode(object sender, SearchEventArgs e)
+		{
+			OnChangeEvent ();
 		}
 
 		public void OnGenerateNode(object sender, SearchEventArgs e)
@@ -77,8 +83,10 @@ namespace AIPlayground.Output
 
 		private string nodeRepresentation(SearchNode node, bool withEdges = true, bool flip = false)
 		{
-			var color = node.isGoal ? ", style=filled, color=blue" : (node.onPathToGoal ? ", style=filled, color=lightblue":"");
-			var output = String.Format ("{0}[label=\"{1}\\n{2}\" {3}];\n", node.ID(), node.ID(), node.CurrentState, color);
+			var style = node.isExpanded ? ", style=bold" : "style=dotted";
+			var color = node.isGoal ? ", style=filled, color=lightblue4" : (node.onPathToGoal ? ", style=filled, color=lightblue":"");
+			var nodeStyle = style + color;
+			var output = String.Format ("{0}[label=\"{1}\\n{2}\" {3}];\n", node.ID(), node.ID(), node.CurrentState, nodeStyle);
 			if (node.ParentNode != null) {
 				if (flip)
 					output += String.Format ("{1}->{0};\n", node.ParentNode.ID (), node.ID ());

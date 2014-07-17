@@ -39,7 +39,7 @@ namespace AIPlayground.Search.Algorithm
 	        Problem = problem;
 			Problem.OnExpand += OnExpandNode;
             Fringe = new Fringe();
-			var initNode = new SearchNode(Problem.InitialState, null, NodeCount++);
+			var initNode = OnCreateNodeEvent(new SearchNode(Problem.InitialState, null, NodeCount++)); //TODO: should be done in search, to fire the event for printing etc
             Fringe.Add(initNode);
 			OnGoalReached += MarkGoalNodes;
 	    }
