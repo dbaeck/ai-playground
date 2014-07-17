@@ -180,5 +180,5 @@ FakesAssemblies/
 *.psess
 *.etl
 *.vspx
-AIPlayground.sublime-project
-AIPlayground.sublime-workspace
+*.sublime-project
+*.sublime-workspace
