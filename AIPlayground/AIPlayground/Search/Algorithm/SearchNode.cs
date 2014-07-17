@@ -14,6 +14,7 @@ namespace AIPlayground.Search.Algorithm
 		public bool onPathToGoal { get; set; }
 		public bool isGoal { get; set; }
 		public List<SearchNode> Edges { get; set; }
+		public bool ControlNode { get; set; }
 
 	    public int Depth
 	    {

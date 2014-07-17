@@ -20,7 +20,7 @@ namespace AIPlayground.Output
 		{
 			this.Nodes = new Dictionary<int, SearchNode> ();
 			this.algorithm = algorithm;
-			algorithm.OnCreateNode += NodeCreated;
+			algorithm.OnGenerateNode += NodeCreated;
 			algorithm.OnGoalReached += GoalReached;
 		}
 

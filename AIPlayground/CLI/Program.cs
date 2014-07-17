@@ -23,7 +23,7 @@ namespace CLI
 		{
 			//TODO: Insert Problem here!
 
-			CLIControl ctrl = new CLIControl (algorithm:AvailableAlgorithm.BiDirectionalSearch);
+			CLIControl ctrl = new CLIControl (algorithm:AvailableAlgorithm.BreadthFirst);
 			ctrl.evaluateArgs (args);
 			ctrl.runAlgorithm ();
 		}

@@ -13,9 +13,11 @@ namespace AIPlayground.Search.Algorithm
 
 	public abstract class SearchAlgorithm
 	{
-		public event EventHandler<SearchEventArgs> OnCreateNode;
+		public event EventHandler<SearchEventArgs> OnGenerateNode;
 		public event EventHandler<SearchEventArgs> OnGoalReached;
 		public event EventHandler<SearchEventArgs> OnSearchFinished;
+		public event EventHandler<SearchEventArgs> OnSearchSpaceExhausted;
+		public event EventHandler<SearchEventArgs> OnExpandNode;
 
 		public int NodeCount { get; set; }
 
@@ -34,8 +36,8 @@ namespace AIPlayground.Search.Algorithm
 
 		public virtual SearchNode OnCreateNodeEvent(SearchNode node)
 		{
-			if(OnCreateNode != null)
-				OnCreateNode (this, new SearchEventArgs(node));
+			if(OnGenerateNode != null)
+				OnGenerateNode (this, new SearchEventArgs(node));
 			return node;
 		}
 

@@ -63,6 +63,10 @@
     <Compile Include="Search\Algorithm\TreeSearch\IterativeDeepeningSearch.cs" />
     <Compile Include="Search\Algorithm\TreeSearch\UniformCostSearch.cs" />
     <Compile Include="Search\Algorithm\TreeSearch\TreeSearch.cs" />
+    <Compile Include="Search\Algorithm\SearchStatistics.cs" />
+    <Compile Include="Search\Algorithm\AlgorithmFactory.cs" />
+    <Compile Include="Search\Algorithm\SearchParadigm.cs" />
+    <Compile Include="Search\Algorithm\AvailableAlgorithm.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,16 +23,7 @@ namespace CLI
 		TreeSearch,
 		BidirectionalSearch
 	}
-
-	public enum AvailableAlgorithm
-	{
-		BreadthFirstSearch,
-		DepthFirstSearch,
-		IterativeDeepeningSearch,
-		UniformCostSearch,
-		BiDirectionalSearch
-	}
-
+		
 	public class CLIControl
 	{
 		public AvailableAlgorithm currentAlgorithm { get; set; }
@@ -62,7 +53,7 @@ namespace CLI
 
 		public CLIControl (string parameters = "ex1.map", 
 			ExampleProblem problem = ExampleProblem.Grid, 
-			AvailableAlgorithm algorithm = AvailableAlgorithm.BreadthFirstSearch, 
+			AvailableAlgorithm algorithm = AvailableAlgorithm.BreadthFirst, 
 			SearchParadigm paradigm = SearchParadigm.GraphSearch)
 		{
 			currentProblem = problem;
@@ -122,17 +113,17 @@ namespace CLI
 		public SearchAlgorithm makeAlgorithm(AvailableAlgorithm a, SearchProblem p)
 		{
 			switch (a) {
-			case AvailableAlgorithm.BreadthFirstSearch:
+			case AvailableAlgorithm.BreadthFirst:
 			default:
 				return new AIPlayground.Search.Algorithm.GraphSearch.BreadthFirstSearch (p);
-			case AvailableAlgorithm.DepthFirstSearch:
+			case AvailableAlgorithm.DepthFirst:
 				return new AIPlayground.Search.Algorithm.GraphSearch.DepthFirstSearch (p);
-			case AvailableAlgorithm.IterativeDeepeningSearch:
+			case AvailableAlgorithm.IterativeDeepening:
 				return new AIPlayground.Search.Algorithm.GraphSearch.IterativeDeepeningSearch (p);
-			case AvailableAlgorithm.UniformCostSearch:
+			case AvailableAlgorithm.UniformCost:
 				return new AIPlayground.Search.Algorithm.GraphSearch.UniformCostSearch (p);
-			case AvailableAlgorithm.BiDirectionalSearch:
-				return new AIPlayground.Search.Algorithm.BiDirectionalSearch.BreadthFirstSearch (p,new GridState(((Grid)p).Goal.X,((Grid)p).Goal.Y,0));
+//			case AvailableAlgorithm.BreadthFirst: //TODO: Bidirectional
+//				return new AIPlayground.Search.Algorithm.BiDirectionalSearch.BreadthFirstSearch (p,new GridState(((Grid)p).Goal.X,((Grid)p).Goal.Y,0));
 			}
 		}
 
