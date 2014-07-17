@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AIPlayground.Output
 {
-	public class DotGraphFormatter
+	public class DotGraphFormatter:INotifyOnGenerateNode, INotifyOnGoalReached
 	{
 		public Dictionary<int, SearchNode> Nodes { get; set;}
 
@@ -20,18 +20,18 @@ namespace AIPlayground.Output
 		{
 			this.Nodes = new Dictionary<int, SearchNode> ();
 			this.algorithm = algorithm;
-			algorithm.OnGenerateNode += NodeCreated;
-			algorithm.OnGoalReached += GoalReached;
+			algorithm.addObserver (this as INotifyOnGenerateNode);
+			algorithm.addObserver (this as INotifyOnGoalReached);
 		}
 
-		public void NodeCreated(object sender, SearchEventArgs e)
+		public void OnGenerateNode(object sender, SearchEventArgs e)
 		{
 			Nodes.Add(e.Node.ID(), e.Node);
 			nextNode = e.Node;
 			OnChangeEvent ();
 		}
 
-		public void GoalReached(object sender, SearchEventArgs e)
+		public void OnGoalReached(object sender, SearchEventArgs e)
 		{
 			this.fileClose = true;
 			OnChangeEvent ();

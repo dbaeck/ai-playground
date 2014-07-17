@@ -50,73 +50,6 @@ namespace AIPlayground.Search.Algorithm
 		/// </summary>
 		public abstract IEnumerable<SearchNode> Search();
 
-		/// <summary>
-		/// Add an observer to this Algorithm
-		/// An ISearchObserver must define a method for each possible event
-		/// each event gets attached with this methode
-		/// </summary>
-		/// <param name="observer">Observer.</param>
-		public virtual void addObserver(ISearchObserver observer)
-		{
-			OnGenerateNode += observer.OnGenerateNode;
-			OnGoalReached += observer.OnGoalReached;
-			OnSearchFinished += observer.OnSearchFinished;
-			OnSearchSpaceExhausted += observer.OnSearchSpaceExhausted;
-			OnSearchFinished += observer.OnSearchFinished;
-		}
-
-		/// <summary>
-		/// Raises the generate node event.
-		/// </summary>
-		/// <param name="node">Node.</param>
-		public virtual SearchNode OnCreateNodeEvent(SearchNode node)
-		{
-			if(OnGenerateNode != null)
-				OnGenerateNode (this, new SearchEventArgs(node));
-			return node;
-		}
-
-		/// <summary>
-		/// Raises tht goal reached event.
-		/// Also Calls SearchFinished for now.
-		/// </summary>
-		/// <returns>The reached.</returns>
-		/// <param name="node">Node.</param>
-		public virtual SearchNode GoalReached(SearchNode node)
-		{
-			if(OnGoalReached != null)
-				OnGoalReached (this, new SearchEventArgs(node));
-
-			SearchFinished (node);	//TODO: Allow resume searching after reaching a goal
-
-			return node;
-		}
-
-		/// <summary>
-		/// Raises the SearchFinished event
-		/// </summary>
-		/// <returns>The finished.</returns>
-		/// <param name="node">Node.</param>
-		public virtual SearchNode SearchFinished(SearchNode node = null)
-		{
-			if(OnSearchFinished != null)
-				OnSearchFinished (this, new SearchEventArgs(node));
-			return node;
-		}
-
-		/// <summary>
-		/// After finding a goal, mark all the nodes on the goal path
-		/// Default action for the goal reached event
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		/// <param name="e">E.</param>
-		private void MarkGoalNodes(object sender, SearchEventArgs e)
-		{
-			var goal = e.Node;
-			goal.isGoal = true;
-			foreach (var n in GetGoalPath(goal))
-				n.onPathToGoal = true;
-		}
 
 		/// <summary>
 		/// Creates a new search node with a given parent.
@@ -174,6 +107,94 @@ namespace AIPlayground.Search.Algorithm
 			yield return goal;
 		}
 
+
+		#region Events
+
+		/// <summary>
+		/// Add an observer to this Algorithm
+		/// An ISearchObserver must define a method for each possible event
+		/// each event gets attached with this methode
+		/// </summary>
+		/// <param name="observer">Observer.</param>
+		public virtual void addObserver(ISearchObserver observer)
+		{
+			OnGenerateNode += observer.OnGenerateNode;
+			OnGoalReached += observer.OnGoalReached;
+			OnSearchFinished += observer.OnSearchFinished;
+			OnSearchSpaceExhausted += observer.OnSearchSpaceExhausted;
+			OnSearchFinished += observer.OnSearchFinished;
+		}
+
+
+		public virtual void addObserver(INotifyOnExpandNode observer)
+		{
+			OnExpandNode += observer.OnExpandNode;
+		}
+
+		public virtual void addObserver(INotifyOnGenerateNode observer)
+		{
+			OnGenerateNode += observer.OnGenerateNode;
+		}
+
+		public virtual void addObserver(INotifyOnGoalReached observer)
+		{
+			OnGoalReached += observer.OnGoalReached;
+		}
+
+		/// <summary>
+		/// Raises the generate node event.
+		/// </summary>
+		/// <param name="node">Node.</param>
+		public virtual SearchNode OnCreateNodeEvent(SearchNode node)
+		{
+			if(OnGenerateNode != null)
+				OnGenerateNode (this, new SearchEventArgs(node));
+			return node;
+		}
+
+		/// <summary>
+		/// Raises tht goal reached event.
+		/// Also Calls SearchFinished for now.
+		/// </summary>
+		/// <returns>The reached.</returns>
+		/// <param name="node">Node.</param>
+		public virtual SearchNode GoalReached(SearchNode node)
+		{
+			if(OnGoalReached != null)
+				OnGoalReached (this, new SearchEventArgs(node));
+
+			SearchFinished (node);	//TODO: Allow resume searching after reaching a goal
+
+			return node;
+		}
+
+		/// <summary>
+		/// Raises the SearchFinished event
+		/// </summary>
+		/// <returns>The finished.</returns>
+		/// <param name="node">Node.</param>
+		public virtual SearchNode SearchFinished(SearchNode node = null)
+		{
+			if(OnSearchFinished != null)
+				OnSearchFinished (this, new SearchEventArgs(node));
+			return node;
+		}
+
+		/// <summary>
+		/// After finding a goal, mark all the nodes on the goal path
+		/// Default action for the goal reached event
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
+		private void MarkGoalNodes(object sender, SearchEventArgs e)
+		{
+			var goal = e.Node;
+			goal.isGoal = true;
+			foreach (var n in GetGoalPath(goal))
+				n.onPathToGoal = true;
+		}
+
+		#endregion
 	}
 }
 
