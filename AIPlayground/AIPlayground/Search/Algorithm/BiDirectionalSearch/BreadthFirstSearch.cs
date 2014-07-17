@@ -9,13 +9,26 @@ using AIPlayground.Search.Problem.State;
 
 namespace AIPlayground.Search.Algorithm.BiDirectionalSearch
 {
+	/// <summary>
+	/// Breadth first search.
+	/// </summary>
 	public class BreadthFirstSearch:BiDirectionalSearch
 	{
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="AIPlayground.Search.Algorithm.BiDirectionalSearch.BreadthFirstSearch"/> class.
+		/// </summary>
+		/// <param name="problem">Problem.</param>
+		/// <param name="goalState">Goal state.</param>
 		public BreadthFirstSearch (SearchProblem problem, IState goalState):base(problem,goalState)
 		{
 
 		}
 
+		/// <summary>
+		/// Run this Search Algorithm Instance on the given Problem
+		/// Needs to be implemented by the specific algorithm
+		/// </summary>
 		public override IEnumerable<SearchNode> Search()
 		{
 			bool found = false;
