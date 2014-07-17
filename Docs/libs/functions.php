@@ -127,7 +127,7 @@
                     $link = $t . clean_url($key, $mode);
                     $nav_class = "";
                 }
-                $return .= "<a href=\"" . $link . "\" class=\"" . $nav_class . "folder\">";
+                $return .= "<a href=\"" . $link . "/index.html\" class=\"" . $nav_class . "folder\">";
                 $return .= clean_url($key, "Title");
                 $return .= "</a>";
                 $return .= "<ul class=\"nav nav-list\">";
