@@ -2,6 +2,9 @@
 
 namespace AIPlayground
 {
+	/// <summary>
+	/// Search paradigm Enumeration.
+	/// </summary>
 	public enum SearchParadigm
 	{
 		TreeSearch,

@@ -47,7 +47,6 @@
     <Compile Include="Search\Algorithm\SearchNode.cs" />
     <Compile Include="Search\Algorithm\SearchAlgorithm.cs" />
     <Compile Include="Search\Algorithm\GraphSearch\GraphSearch.cs" />
-    <Compile Include="Search\Algorithm\TreeSearch.cs" />
     <Compile Include="Search\Problem\SearchProblem.cs" />
     <Compile Include="Search\Problem\Heuristic\IHeuristic.cs" />
     <Compile Include="Search\Algorithm\Fringe.cs" />
@@ -55,7 +54,6 @@
     <Compile Include="Search\Algorithm\GraphSearch\UniformCostSearch.cs" />
     <Compile Include="Search\Algorithm\Comparers.cs" />
     <Compile Include="Search\Algorithm\GraphSearch\IterativeDeepeningSearch.cs" />
-    <Compile Include="Search\Algorithm\Event.cs" />
     <Compile Include="Search\Algorithm\BiDirectionalSearch\BiDirectionalSearch.cs" />
     <Compile Include="Search\Algorithm\BiDirectionalSearch\BreadthFirstSearch.cs" />
     <Compile Include="Search\Algorithm\TreeSearch\BreadthFirstSearch.cs" />
@@ -67,6 +65,8 @@
     <Compile Include="Search\Algorithm\AlgorithmFactory.cs" />
     <Compile Include="Search\Algorithm\SearchParadigm.cs" />
     <Compile Include="Search\Algorithm\AvailableAlgorithm.cs" />
+    <Compile Include="Search\Algorithm\ISearchObserver.cs" />
+    <Compile Include="Search\Algorithm\SearchEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

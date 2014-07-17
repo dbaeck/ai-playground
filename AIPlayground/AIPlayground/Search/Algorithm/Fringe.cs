@@ -6,8 +6,12 @@ using System.Collections;
 
 namespace AIPlayground
 {
-	public delegate int SortDelegate(SearchNode n1, SearchNode n2);
 
+	/// <summary>
+	/// The Fringe is a List with some extensions to fit the needs of various algorithms.
+	/// Such a collection is sometimes called open list or frontier.
+	/// Our collection includes possibilities to be used as a stack, queue or sorted list.
+	/// </summary>
 	public class Fringe : List<SearchNode>
 	{
 	
@@ -16,6 +20,11 @@ namespace AIPlayground
 
 		}
 
+		/// <summary>
+		/// Insert an element at the position determined by a given IComparer.
+		/// </summary>
+		/// <param name="nodes">Nodes.</param>
+		/// <param name="del">Del.</param>
 		public void SortedInsert(IEnumerable<SearchNode> nodes, IComparer<SearchNode> del){
 			foreach (var searchNode in nodes)
 				this.Add (searchNode);
@@ -23,6 +32,10 @@ namespace AIPlayground
 			this.Sort (del);
 		}
 
+		/// <summary>
+		/// Enqueue the specified nodes.
+		/// </summary>
+		/// <param name="nodes">Nodes.</param>
 		public void Enqueue(IEnumerable<SearchNode> nodes)
 		{
 			foreach (var searchNode in nodes)
@@ -32,11 +45,18 @@ namespace AIPlayground
 			}
 		}
 
+		/// <summary>
+		/// Dequeue the first element of the queue.
+		/// </summary>
 		public SearchNode Dequeue()
 		{
 			return this.GetAndRemoveFirst();
 		}
 
+		/// <summary>
+		/// Gets and removes first element of our list (stack behavior).
+		/// </summary>
+		/// <returns>The and remove first.</returns>
 		public SearchNode GetAndRemoveFirst()
 		{
 			if (this.Any())
@@ -48,11 +68,26 @@ namespace AIPlayground
 			return null;
 		}
 
+		/// <summary>
+		/// Pop the first element of the list (stack behavior).
+		/// </summary>
 		public SearchNode Pop()
 		{
 			return GetAndRemoveFirst();
 		}
 
+		/// <summary>
+		/// Look at the first element of our list without removing it (stack behaviour).
+		/// </summary>
+		public SearchNode Peek()
+		{
+			return this.First ();
+		}
+
+		/// <summary>
+		/// Push the specified nodes on the list (stack behavior).
+		/// </summary>
+		/// <param name="nodes">Nodes.</param>
 		public void Push(IEnumerable<SearchNode> nodes)
 		{
 			var a = nodes.Reverse();
