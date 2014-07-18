@@ -52,6 +52,7 @@ namespace CLI
 			CLIControl ctrl = new CLIControl (algorithm:AvailableAlgorithm.BreadthFirst);
 			ctrl.evaluateArgs (args);
 			ctrl.runAlgorithm ();
+            //
 		}
 	}
 }
