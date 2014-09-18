@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="WPFClient.usercontrols.ProblemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="200"
+			 Width="200" Height="200">
+	<Border BorderBrush="Black" BorderThickness="1">
+		<Grid>
+    		<Grid.RowDefinitions>
+    			<RowDefinition Height="25"/>
+				<RowDefinition Height="10"/>
+    			<RowDefinition Height="259*"/>
+    		</Grid.RowDefinitions> 
+			<Label>Problem</Label>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<Button Width="20" Margin="0,0,2,0">v</Button>
+				<Button Width="20" Content="&lt;"></Button>
+			</StackPanel>
+			<ComboBox Grid.Row="2" Height="25" SelectedIndex="0" VerticalAlignment="Top" IsReadOnly="True">
+				<ComboBoxItem>Towers of Hanoi</ComboBoxItem>
+				<ComboBoxItem>asdf</ComboBoxItem>
+				<ComboBoxItem>asdf</ComboBoxItem>
+				<ComboBoxItem>asdf</ComboBoxItem>
+				<ComboBoxItem>asdf</ComboBoxItem>
+			</ComboBox>
+		</Grid>
+	</Border>
+</UserControl>
